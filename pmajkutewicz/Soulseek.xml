@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>Soulseek</Name>
+    <Repository>whatsalinux/soulseek</Repository>
+    <Registry>https://hub.docker.com/r/whatsalinux/soulseek/</Registry>
+    <Network>bridge</Network>
+    <MyIP/>
+    <Shell>sh</Shell>
+    <Privileged>true</Privileged>
+    <Support>https://bitbucket.org/whatsAlinux/soulseek/issues</Support>
+    <Project>http://www.soulseekqt.net</Project>
+    <Overview>Use VNC client IP:5900 to access Soulseek.&#xD;
+        Configure your ports like on screen below:&#xD;
+        [center][img width='758px' src='https://raw.githubusercontent.com/pmajkutewicz/unraid-docker-templates/master/templates/imgs/Soulseek/soulseek_login.png'][/center]&#xD;
+        Update Your configuration to store you client data more often eg. 10 min (or 1 min like on screenshot may be too much)&#xD;
+        [center][img width='516px' src='https://raw.githubusercontent.com/pmajkutewicz/unraid-docker-templates/master/templates/imgs/Soulseek/soulseek_general.png'][/center]&#xD;
+    </Overview>
+    <Category>Downloaders:</Category>
+    <WebUI/>
+    <TemplateURL/>
+    <Icon>https://upload.wikimedia.org/wikipedia/commons/8/83/Soulseek-png-3.png</Icon>
+    <ExtraParams/>
+    <PostArgs/>
+    <CPUset/>
+    <DateInstalled>1540047079</DateInstalled>
+    <DonateText/>
+    <DonateLink/>
+    <Description>Use VNC client IP:5900 to access Soulseek.&#xD;
+        Configure your ports like on screen below:&#xD;
+        [center][img width='758px' src='https://raw.githubusercontent.com/pmajkutewicz/unraid-docker-templates/master/templates/imgs/Soulseek/soulseek_login.png'][/center]&#xD;
+        Update Your configuration to store you client data more often eg. 10 min (or 1 min like on screenshot may be too much)&#xD;
+        [center][img width='516px' src='https://raw.githubusercontent.com/pmajkutewicz/unraid-docker-templates/master/templates/imgs/Soulseek/soulseek_general.png'][/center]&#xD;
+    </Description>
+    <Networking>
+        <Mode>bridge</Mode>
+        <Publish>
+            <Port>
+                <HostPort>5950</HostPort>
+                <ContainerPort>5900</ContainerPort>
+                <Protocol>tcp</Protocol>
+            </Port>
+            <Port>
+                <HostPort>19832</HostPort>
+                <ContainerPort>19832</ContainerPort>
+                <Protocol>tcp</Protocol>
+            </Port>
+            <Port>
+                <HostPort>19832</HostPort>
+                <ContainerPort>19832</ContainerPort>
+                <Protocol>udp</Protocol>
+            </Port>
+            <Port>
+                <HostPort>19833</HostPort>
+                <ContainerPort>19833</ContainerPort>
+                <Protocol>tcp</Protocol>
+            </Port>
+            <Port>
+                <HostPort>19833</HostPort>
+                <ContainerPort>19833</ContainerPort>
+                <Protocol>udp</Protocol>
+            </Port>
+        </Publish>
+    </Networking>
+    <Data>
+        <Volume>
+            <HostDir>/mnt/user/music</HostDir>
+            <ContainerDir>/home/soulseek/Music</ContainerDir>
+            <Mode>ro</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/appdata/soulseek/config</HostDir>
+            <ContainerDir>/home/soulseek/.config</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/appdata/soulseek/qt</HostDir>
+            <ContainerDir>/home/soulseek/.SoulseekQt</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/incoming/soulseek/dl</HostDir>
+            <ContainerDir>/home/soulseek/Soulseek Downloads</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/appdata/soulseek/chats</HostDir>
+            <ContainerDir>/home/soulseek/Soulseek Chat Logs</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+    </Data>
+    <Environment/>
+    <Labels/>
+    <Config Name="Shared Music" Target="/home/soulseek/Music" Default="/mnt/user/music" Mode="ro" Description="Your shared music folder (read-only)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/music</Config>
+    <Config Name="Soulseek config" Target="/home/soulseek/.config" Default="/mnt/user/appdata/soulseek/config" Mode="rw" Description="Config folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/soulseek/config</Config>
+    <Config Name="Soulseek qt config" Target="/home/soulseek/.SoulseekQt" Default="/mnt/user/appdata/soulseek/qt" Mode="rw" Description="Qt config folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/soulseek/qt</Config>
+    <Config Name="Soulseek download folder" Target="/home/soulseek/Soulseek Downloads" Default="/mnt/user/incoming/soulseek/dl" Mode="rw" Description="Download folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/incoming/soulseek/dl</Config>
+    <Config Name="Soulseek chat logs" Target="/home/soulseek/Soulseek Chat Logs" Default="/mnt/user/appdata/soulseek/chats" Mode="rw" Description="Chat Logs" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/soulseek/chats</Config>
+    <Config Name="VNC Port" Target="5900" Default="5950" Mode="tcp" Description="Connect via VNC to this port to get access to Soulseek" Type="Port" Display="advanced-hide" Required="true" Mask="false">5950</Config>
+    <Config Name="Host Port 1" Target="19832" Default="19832" Mode="tcp" Description="Container Port: 19832" Type="Port" Display="advanced-hide" Required="true" Mask="false">19832</Config>
+    <Config Name="Host Port 2" Target="19832" Default="19832" Mode="udp" Description="Container Port: 19832" Type="Port" Display="advanced-hide" Required="true" Mask="false">19832</Config>
+    <Config Name="Host Port 3" Target="19833" Default="19833" Mode="tcp" Description="Container Port: 19833" Type="Port" Display="advanced-hide" Required="true" Mask="false">19833</Config>
+    <Config Name="Host Port 4" Target="19833" Default="19833" Mode="udp" Description="Container Port: 19833" Type="Port" Display="advanced-hide" Required="true" Mask="false">19833</Config>
+</Container>
